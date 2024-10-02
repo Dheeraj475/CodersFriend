@@ -11,6 +11,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from '@rehype-pretty/transformers'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import OnThisPage from "@/components/onthispage"  // Import your OnThisPage component
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join('content'))
@@ -31,8 +32,8 @@ async function getBlogData(slug) {
     .use(rehypeDocument, { title: '👋🌍' })
     .use(rehypeFormat)
     .use(rehypeStringify)
-    .use(rehypeSlug)
-    .use(rehypeAutolinkHeadings)
+    .use(rehypeSlug)  // Slugifies headings so they have IDs
+    .use(rehypeAutolinkHeadings)  // Adds anchor links to headings
     .use(rehypePrettyCode, {
       theme: "github-dark",
       transformers: [
@@ -61,6 +62,9 @@ export default async function Page({ params }) {
         <p className="text-sm text-gray-500 mb-4">{data.date}</p>
       </div>
       <div dangerouslySetInnerHTML={{ __html: htmlContent }} className="prose dark:prose-invert"></div>
+
+      {/* Add the "On This Page" component with the parsed HTML content */}
+      <OnThisPage htmlContent={htmlContent} />
     </div>
   )
 }
