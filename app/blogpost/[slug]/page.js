@@ -12,23 +12,16 @@ import { transformerCopyButton } from '@rehype-pretty/transformers'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 
-export async function getStaticPaths() {
-  // Get all markdown files in the "content" directory
+export async function generateStaticParams() {
   const files = fs.readdirSync(path.join('content'))
 
-  const paths = files.map(filename => ({
-    params: { slug: filename.replace('.md', '') }
+  return files.map((filename) => ({
+    slug: filename.replace('.md', ''),
   }))
-
-  return {
-    paths,
-    fallback: false
-  }
 }
 
-export async function getStaticProps({ params }) {
-  const filepath = path.join('content', `${params.slug}.md`)
-
+async function getBlogData(slug) {
+  const filepath = path.join('content', `${slug}.md`)
   const fileContent = fs.readFileSync(filepath, "utf-8")
   const { content, data } = matter(fileContent)
 
@@ -52,15 +45,13 @@ export async function getStaticProps({ params }) {
 
   const htmlContent = (await processor.process(content)).toString()
 
-  return {
-    props: {
-      htmlContent,
-      data
-    }
-  }
+  return { htmlContent, data }
 }
 
-export default function Page({ htmlContent, data }) {
+export default async function Page({ params }) {
+  const { slug } = params
+  const { htmlContent, data } = await getBlogData(slug)
+
   return (
     <div className="max-w-6xl mx-auto p-4">
       <h1 className="text-4xl font-bold mb-4">{data.title}</h1>
