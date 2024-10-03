@@ -38,11 +38,13 @@ async function getBlogData(slug) {
       theme: "github-dark",
       transformers: [
         transformerCopyButton({
-          visibility: 'always',
+          visibility: 'hover',
           feedbackDuration: 3_000,
+          buttonWrapper: ({ button }) => `<div class="copy-button">${button}</div>`,
         }),
       ],
     })
+    
 
   const htmlContent = (await processor.process(content)).toString()
 
