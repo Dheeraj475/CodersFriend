@@ -4,7 +4,7 @@ description: This is Java tutorial and this is for learning JavaScript
 slug: java-programming-tutorial
 date: 10/18/2024
 author: Dheeraj
-image: /typescript.webp
+image: /java.png
 ---
 
 ## Introduction to Java
