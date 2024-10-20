@@ -1,6 +1,6 @@
 ---
 title: Java Programming Tutorial
-description: This is Java tutorial and this is for learning JavaScript
+description: This is Java tutorial and this is for learning Java
 slug: java-programming-tutorial
 date: 10/18/2024
 author: Dheeraj

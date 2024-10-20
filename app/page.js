@@ -94,7 +94,7 @@ export default function Home() {
                 <img src="/java.png" className="w-full h-65 object-cover rounded-t-lg" />
                 <div className="mt-4">
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Java Programming Tutorial</h3>
-                  <p className="mt-2 text-gray-600 dark:text-gray-400">This is Java tutorial and this is for learning JavaScript</p>
+                  <p className="mt-2 text-gray-600 dark:text-gray-400">This is Java tutorial and this is for learning Java</p>
                   <Link href="/blogpost/java-programming-tutorial" passHref>
                     <Button className="m-2 mx-0 btn-outline">Read More</Button>
                   </Link>
@@ -106,8 +106,8 @@ export default function Home() {
               <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105">
                 <img src="/react.png" alt="Blog 2" className="w-full h-65 object-cover rounded-t-lg" />
                 <div className="mt-4">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Blog Post Title 2</h3>
-                  <p className="mt-2 text-gray-600 dark:text-gray-400">A brief description of the blog post goes here. It should be engaging and informative.</p>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">React Js Tutorial</h3>
+                  <p className="mt-2 text-gray-600 dark:text-gray-400">This is react tutorial and this is for learning Reactjs </p>
                   <Link href="/blogpost/java-programming-tutorial" passHref>
                     <Button className="m-2 mx-0 btn-outline">Read More</Button>
                   </Link>
@@ -119,8 +119,8 @@ export default function Home() {
               <div className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-800 transform transition duration-500 hover:scale-105">
                 <img src="react.png" alt="Blog 3" className="w-full h-65 object-cover rounded-t-lg" />
                 <div className="mt-4">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Blog Post Title 3</h3>
-                  <p className="mt-2 text-gray-600 dark:text-gray-400">A brief description of the blog post goes here. It should be engaging and informative.</p>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Spring Boot Tutorial</h3>
+                  <p className="mt-2 text-gray-600 dark:text-gray-400">This is Spring boot tutorial and this is for learning Spring Boot</p>
                   <Link href="/blogpost/java-programming-tutorial" passHref>
                     <Button className="m-2 mx-0 btn-outline">Read More</Button>
                   </Link>
