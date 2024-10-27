@@ -7,256 +7,179 @@ author: Dheeraj
 image: /reactjs.png
 ---
 
-# CSS Tutorial: A Comprehensive Guide
+# What is Front-End Development?
+**Front-end development** refers to what the end user (also commonly referred to as the "client") can see. In the most basic forms, front-end development consists of HTML, CSS, and JavaScript.
 
-Welcome to this comprehensive CSS tutorial! This guide will help you master the art of styling websites using CSS (Cascading Style Sheets). Whether you're a beginner or looking to expand your knowledge, this tutorial covers everything from basic styles to advanced layout techniques and animations.
+As a developer, you will find that it is very easy for your front-end (website, web application, etc.) to become very complex and have a lot of different moving parts. It makes solving problems much more difficult when you have to go through a maze of code to find the issue.
 
-## Introduction to CSS
+Eventually, developers decided that there must be a better way to manage all of that code, so they created libraries that could make life easier. React was one of those libraries.
 
-CSS is the language used to style HTML content, enabling you to control the layout, colors, fonts, and overall visual presentation of a website.
+*React was created by Facebook and released to the public in May of 2013 and has been consistently maintained since then.*
 
-### Why Learn CSS?
+## Why React?
+**React** is one of the most popular JavaScript libraries for front-end web applications.
 
-- **Styling and Layout**: CSS allows you to transform plain HTML into visually appealing web pages.
-- **Responsiveness**: With CSS, you can create responsive designs that adapt to different screen sizes and devices.
-- **Customizability**: CSS provides the flexibility to fine-tune every aspect of your site's appearance.
+**Here are some of the advantages of React:**
 
-## Setting Up CSS
+**1.Speed :**
+Interactive websites need to update the DOM (Document Object Model) each time a change happens. This process is generally resourceful and slow.
+Compared to other libraries that manipulate the DOM, React uses a **Virtual DOM**, allowing to update only the parts of the website that have changed. This increases the speed of updates dramatically, as modern web applications may contain thousands of elements.
 
-To use CSS, you can either include it directly in your HTML file (inline or internal) or as an external stylesheet. Here’s how to set up CSS:
+**2.Ease of Use :**
+React allows developers to group related code together, thereby making building and maintaining large scale applications much less complex.
 
-### Inline CSS
+**3.Support :**
+React has an amazingly large community and is open source. It is maintained by Facebook and the community.
+
+## Adding React
+
+React can be added to a website without any special tools and installations.
+
+First, we need to add the React library as two **script** tags to the **head** of our HTML document:
+
 
 ```html
-<p style="color: blue;">This is a blue paragraph.</p>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 ```
 
-### Internal CSS
+Next, we need to add another script, to enable the use of **JSX**.
+JSX is a syntax extension to JavaScript, and it is recommended to be used with React.
 
 ```html
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+```
+
+*This approach of adding React to a website is only suitable for creating small demos.*
+
+After adding the required script tags, we can start building our React app!
+We add a container, that will be used to display something using React.
+
+```html
+
+<div id="container"></div>
+
+```
+
+*You can use any **id** for your container. It will be used by React to find the container and add content to it.*
+
+```html
+
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-        p {
-            color: blue;
-        }
-    </style>
-</head>
-<body>
-    <p>This is a blue paragraph.</p>
-</body>
+    <head>
+        <title>Test</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin>
+        </script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+    </head>
+    <body>
+        
+        <div id="container"></div>
+        
+        <script type="text/babel">
+        ReactDOM.render(
+          <h1>Hello, React!</h1>,
+          document.getElementById('container')
+        )
+        </script>
+    </body>
 </html>
 ```
 
-### External CSS
+The code finds the **container** div, and adds the **h1** heading to it.
 
-Create a separate CSS file (e.g., `styles.css`) and link it to your HTML file.
+## Create React App
 
-```html
-<link rel="stylesheet" href="styles.css">
+In the previous lesson we learned how to add React to a simple HTML document using the script tags.
+However, real web apps have a different scale, contain multiple files, use 3rd party libraries, etc.
+
+Facebook has created a handy tool called [Create React App](https://create-react-app.dev/)  that makes it easy to setup a React project with just a simple command!
+
+To get started, make sure you have a recent version of [Node](https://nodejs.org/en/) installed on your machine.
+Run the following commands in the Terminal to create and start a React app called **"my-app":**
+
+```bash
+npx create-react-app my-app
+cd my-app
+npm start
 ```
 
-In `styles.css`:
+This will install all the required dependencies, configure and start the project on **localhost:3000**.
 
-```css
-p {
-    color: blue;
-}
+This is the default output of our project in the browser:
+
+![Create React app](/create-react-app.png)
+
+*Create React App allows us to focus on the code, rather than installing and configuring different tools.*
+
+## Project Structure
+
+Let's explore the structure of our project by opening it using a code editor.
+We will be using **Visual Studio Code** in our example, but you are free to use any code editor.
+
+![Project-structure1](/project-structure1.png)
+
+The **public** folder contains files related to how the application will display on the client, the most important of those being **index.html**, which is the HTML template of our page:
+
+![Project-structure2](/project-structure2.png)
+
+The **src** folder contains all of the JavaScript, CSS, and image files that will be compiled into a bundle file and injected into **index.html**:
+
+![Project-structure3](/project-structure3.png)
+
+How is React compiled into a bundle file? It uses what is called a "file loader". In the case of Create React App, **Webpack** is used.
+Webpack creates a "bundle" file containing the content of multiple files that need to be "bundled" together and it is all added together into a single file. Instead of making the HTML file go and find multiple files, which can slow down load times tremendously, it only has to find one file.
+
+*Remember, all CSS and JS files need to be added to the src folder, otherwise webpack won't see them.*
+
+While there are other files in the **src** folder that come with **Create React App** when it is generated, the two files below are the only critical files:
+
+- **index.js :** This file is the entry point into our application. In our code, a method called **ReactDOM.render()** is used to find an element with **id="root"** in the HTML and add our React application inside of that element (similar to the previous lesson).
+
+- **App.js :** This file is the main **component** that will be rendered to the DOM, which currently includes the React logo image and the default text, that we see in the output.
+
+### Changing the Output
+
+Now, when we know how to create and run a React project, let's change the default output to a simple Hello message.
+
+To do that, we need to open **src/index.js** and change the code to the following:
+
+```js
+
+ReactDOM.render(
+  <h1>Hello, React!</h1>,
+  document.getElementById('root')
+);
+
 ```
 
-## CSS Basics
+This will output the message as a heading:
 
-Now, let’s dive into the basics of CSS, including selectors, properties, and how to apply styles to HTML elements.
+![Changing-output](/changing-output.png)
 
-### Selectors
+*A really cool feature of Create React App is **Fast Refresh**, which automatically reflects the changes made to the code in the browser.*
 
-Selectors are used to target HTML elements and apply styles. Some common selectors include:
+### StackBlitz
 
-- **Element Selector**: Targets all instances of an element (e.g., `p` for paragraphs).
-- **Class Selector**: Targets elements with a specific class (e.g., `.example`).
-- **ID Selector**: Targets an element with a specific ID (e.g., `#header`).
+To make it easier to play around with React, we will be using **StackBlitz** as our online playground to enable changing and running real React code.
 
-```css
-/* Element selector */
-p {
-    color: green;
-}
+Here is the the same project on StackBlitz:
 
-/* Class selector */
-.example {
-    font-size: 20px;
-}
+![StackBlitz](/stack-blitz.png)
 
-/* ID selector */
-#header {
-    background-color: lightgray;
-}
-```
+[Try it on StackBlitz](https://stackblitz.com/edit/hello-react-example?file=index.js)
 
-### Colors and Backgrounds
+We have removed all the extra files, such as the logo images, to make the project structure simpler.
+Now we have the following files:  
+**index.html**: The HTML page template.  
+**index.js**: The entry point of our app.  
+**style.css**: the stylesheet for our project.  
+**package.json**: holds various metadata relevant to the project, like dependencies.
 
-CSS allows you to set text colors, background colors, and images.
-
-```css
-/* Text color */
-h1 {
-    color: darkblue;
-}
-
-/* Background color */
-body {
-    background-color: lightyellow;
-}
-
-/* Background image */
-div {
-    background-image: url('background.jpg');
-}
-```
-
-### Fonts and Text Styling
-
-Control the typography of your website using fonts, text alignment, and decoration properties.
-
-```css
-h1 {
-    font-family: Arial, sans-serif;
-    font-size: 32px;
-    text-align: center;
-    text-decoration: underline;
-}
-```
-
-## Intermediate CSS
-
-After mastering the basics, you can start exploring more intermediate CSS concepts such as box model, positioning, and layout techniques.
-
-### Box Model
-
-The box model is fundamental to understanding how elements are sized and spaced in CSS. It consists of four components: content, padding, border, and margin.
-
-```css
-div {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid black;
-    margin: 20px;
-}
-```
-
-### Positioning
-
-CSS provides several ways to position elements on a page:
-
-- **Static**: The default position (elements appear in the normal document flow).
-- **Relative**: Positioned relative to its normal position.
-- **Absolute**: Positioned relative to the nearest positioned ancestor.
-- **Fixed**: Positioned relative to the viewport.
-- **Sticky**: A hybrid between relative and fixed positioning.
-
-```css
-div {
-    position: relative;
-    top: 10px;
-    left: 20px;
-}
-```
-
-### Flexbox
-
-Flexbox is a powerful layout model that allows you to create flexible and responsive layouts.
-
-```css
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item {
-    flex: 1;
-    margin: 10px;
-}
-```
-
-### Grid
-
-CSS Grid Layout provides a two-dimensional layout system, making it easy to design complex web layouts.
-
-```css
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-}
-
-.item {
-    background-color: lightblue;
-    padding: 20px;
-}
-```
-
-## Advanced CSS
-
-Now that you’re comfortable with intermediate concepts, it’s time to explore advanced topics like CSS animations, transitions, and responsive design.
-
-### CSS Animations
-
-CSS animations allow you to animate transitions between different styles.
-
-```css
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-div {
-    animation: fadeIn 2s ease-in-out;
-}
-```
-
-### CSS Transitions
-
-Transitions allow you to smoothly change property values over a specified duration.
-
-```css
-button {
-    background-color: blue;
-    transition: background-color 0.5s ease;
-}
-
-button:hover {
-    background-color: green;
-}
-```
-
-### Media Queries
-
-Media queries enable responsive design by applying different styles based on the device's characteristics (e.g., screen width).
-
-```css
-/* For screens wider than 600px */
-@media (min-width: 600px) {
-    body {
-        background-color: lightgreen;
-    }
-}
-
-/* For screens narrower than 600px */
-@media (max-width: 600px) {
-    body {
-        background-color: lightpink;
-    }
-}
-```
-
-## Conclusion
-
-Congratulations on completing this CSS tutorial! You’ve learned the basics of CSS, intermediate layout techniques like Flexbox and Grid, and advanced topics like animations and responsive design. With CSS, you can create beautiful, responsive websites that look great on any device. Keep practicing and experimenting to further develop your CSS skills.
-
-Happy styling!
+*Tap Try It on StackBlitz and play around with the code!*
