@@ -3,7 +3,11 @@ import Image from 'next/image';
 export default function About() {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center py-32 bg-gray-100 dark:bg-gray-700 ">
+      <div className="flex flex-col items-center justify-center my-6">
+        <h1>Comming...</h1>
+      </div>
+
+      {/* <div className="flex flex-col items-center justify-center py-32 bg-gray-100 dark:bg-gray-700 ">
         <div className="w-full max-w-4xl p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/3 flex justify-center items-center mb-8 md:mb-0 ">
@@ -88,7 +92,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );
