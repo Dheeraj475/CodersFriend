@@ -38,9 +38,8 @@ async function getBlogData(slug) {
       theme: "github-dark",
       transformers: [
         transformerCopyButton({
-          visibility: 'hover',
-          feedbackDuration: 3_000,
-          buttonWrapper: ({ button }) => `<div class="copy-button">${button}</div>`,
+          visibility: 'always',
+          feedbackDuration: 3_000
         }),
       ],
     })

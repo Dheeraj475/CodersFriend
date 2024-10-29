@@ -90,7 +90,6 @@
   }
 }
 
-
 code[data-line-numbers] {
   counter-reset: line;
 }
@@ -127,17 +126,3 @@ code[data-line-numbers-max-digits="4"] > [data-line]::before {
   width: 2.25rem;
 }
 
-.copy-button {
-  position: absolute; /* Use absolute positioning */
-  top: 0.5rem; /* Adjust based on your design */
-  right: 0.5rem; /* Adjust based on your design */
-  z-index: 10; /* Ensure it's above the code */
-}
-
-/* Adjust for mobile responsiveness */
-@media (max-width: 600px) {
-  .copy-button {
-    top: 0.2rem; /* Adjust for smaller screens */
-    right: 0.2rem; /* Adjust for smaller screens */
-  }
-}
